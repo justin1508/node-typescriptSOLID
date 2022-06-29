@@ -1,0 +1,254 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Atlas",
+		"description": "Esta é uma documentação sobre Atlas API",
+		"version": "1.0.0",
+		"contact": {
+			"email": "helio.junior@zema.com"
+		}
+	},
+	"paths": {
+		"/users": {
+			"post": {
+				"tags": [
+					"users"
+				],
+				"summary": "Criar novo usuário",
+				"description": "Criar novo usuário",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "Name example",
+									"email": "emailexample@email"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Operação realizada com sucesso"
+					},
+					"400": {
+						"description": "E-mail já está sendo utilizado"
+					}
+				}
+			},
+			"get": {
+				"tags": [
+					"users"
+				],
+				"summary": "Retorna todos usuários",
+				"description": "Retorna todos usuários",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"user_id": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"user_id": "7843789-73489-794837"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Operação realizada com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"admin": {
+												"type": "boolean"
+											},
+											"id": {
+												"type": "string"
+											},
+											"email": {
+												"type": "string"
+											},
+											"created_at": {
+												"type": "string"
+											},
+											"updated_at": {
+												"type": "string"
+											}
+										},
+										"example": {
+											"admin": false,
+											"id": "2232-32jk32k23-323",
+											"email": "emailexample@email",
+											"created_at": "20220620",
+											"updated_at": "20220622"
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Usuário sem permissão ou usuário não encontrado"
+					}
+				}
+			}
+		},
+		"/users/{user_id}": {
+			"get": {
+				"tags": [
+					"users"
+				],
+				"summary": "Retorna usuário específico",
+				"description": "Retorna usuário específico",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"user_id": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "Name example",
+									"email": "emailexample@email"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Operação realizada com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"admin": {
+												"type": "boolean"
+											},
+											"id": {
+												"type": "string"
+											},
+											"email": {
+												"type": "string"
+											},
+											"created_at": {
+												"type": "string"
+											},
+											"updated_at": {
+												"type": "string"
+											}
+										},
+										"example": {
+											"admin": "Name example",
+											"id": "2232-32jk32k23-323",
+											"email": "emailexample@email",
+											"created_at": "20220620",
+											"updated_at": "20220622"
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Usuário sem permissão ou usuário não encontrado"
+					}
+				}
+			}
+		},
+		"/users/{user_id}/admin": {
+			"patch": {
+				"tags": [
+					"users"
+				],
+				"summary": "Torna admin um usuário",
+				"description": "Torna admin um usuário",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"user_id": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"user_id": "fdfdfd7-fdfd-sddsdxc-jklj"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Operação realizada com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"admin": {
+												"type": "boolean"
+											},
+											"id": {
+												"type": "string"
+											},
+											"email": {
+												"type": "string"
+											},
+											"created_at": {
+												"type": "string"
+											},
+											"updated_at": {
+												"type": "string"
+											}
+										},
+										"example": {
+											"admin": true,
+											"id": "2232-32jk32k23-323",
+											"email": "emailexample@email",
+											"created_at": "20220620",
+											"updated_at": "20220622"
+										}
+									}
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Usuário não encontrado"
+					}
+				}
+			}
+		}
+	}
+}
